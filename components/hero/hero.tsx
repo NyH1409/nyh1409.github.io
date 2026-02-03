@@ -78,8 +78,23 @@ export function HeroSection() {
             </div>
           </div>
         </div>
+        <div className="mt-32 grid grid-cols-3 gap-8 max-w-lg mx-auto">
+          {[
+            { value: "3+", label: "Années d'expérience" },
+            { value: "10+", label: "Projets réalisés" },
+            { value: "5+", label: "Clients satisfaits" },
+          ].map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="text-2xl sm:text-3xl font-bold text-gradient">
+                {stat.value}
+              </div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-1">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-
       <style jsx>{`
         @keyframes float {
           0%,
