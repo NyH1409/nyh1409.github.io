@@ -1,144 +1,146 @@
 import { useRef } from "react";
-import { Lightbulb, BookOpen, Target, Code } from "lucide-react";
+import { Server, Cloud, Brain, Database, Layout, Wrench } from "lucide-react";
+import { useIntl } from "react-intl";
 
-export const WorkSection = () => {
+export const AboutAndSkillsSection = () => {
+  const intl = useIntl();
   const ref = useRef(null);
-  const values = [
+
+  const skillCategories = [
     {
-      key: "innovation",
-      icon: Lightbulb,
-      color: "text-yellow-500",
-      bgColor: "bg-yellow-500/10",
-      description: "Toujours à la recherche des dernières technologies",
+      key: "Backend",
+      icon: Server,
+      color: "text-orange-500",
+      bgColor: "bg-orange-500/10",
+      skills: ["Java 17", "Spring Boot", "RESTful APIs", "Microservices"],
     },
     {
-      key: "learning",
-      icon: BookOpen,
+      key: "Cloud & DevOps",
+      icon: Cloud,
       color: "text-blue-500",
       bgColor: "bg-blue-500/10",
-      description: "En constante évolution et amélioration",
+      skills: ["AWS Lambda", "EventBridge", "Docker", "CI/CD"],
     },
     {
-      key: "solution",
-      icon: Target,
-      color: "text-green-500",
-      bgColor: "bg-green-500/10",
-      description: "Focus sur les résultats concrets",
-    },
-    {
-      key: "clean",
-      icon: Code,
+      key: "AI & Data",
+      icon: Brain,
       color: "text-purple-500",
       bgColor: "bg-purple-500/10",
-      description: "Qualité et maintenabilité avant tout",
+      skills: ["Python", "YOLOv8", "PostgreSQL", "GeoSpatial"],
+    },
+    {
+      key: "Frontend",
+      icon: Layout,
+      color: "text-indigo-500",
+      bgColor: "bg-indigo-500/10",
+      skills: ["Next.js", "TypeScript", "Tailwind CSS"],
+    },
+    {
+      key: "Tools",
+      icon: Wrench,
+      color: "text-yellow-500",
+      bgColor: "bg-yellow-500/10",
+      skills: ["GitLab", "Jira", "Postman", "Sentry", "Mattermost"],
     },
   ];
 
   return (
-    <section id="about" className="relative" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="text-primary text-sm font-medium uppercase tracking-wider"></span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-2"></h2>
-        </div>
+    <section id="about" className="py-20 relative overflow-hidden" ref={ref}>
+      {/* Background Subtle Pattern */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
+          }}
+        />
+      </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
-          <div className="space-y-6">
-            <h1 className="text-2xl font-bold">Qui suis-je?</h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Étudiant en ingénierie informatique, je possède trois ans
-              d’expérience professionnelle en développement Java, en
-              architecture microservices, en déploiements cloud sur AWS et en
-              systèmes d’IA géospatiale, avec une contribution notable au
-              développement d’une plateforme deep-tech française exploitant une
-              IA hybride pour transformer des imageries aériennes ultra-haute
-              résolution en insights géospatiaux destinés aux compagnies
-              d’assurance, aux collectivités locales et aux gestionnaires
-              d’actifs.
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          {/* Left Column: Bio & Identity */}
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-2">
+                Expertise & Bio
+              </h2>
+              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+                Qui suis-je ?
+              </h1>
+            </div>
+
+            <p className="text-md text-muted-foreground leading-relaxed max-w-xl">
+              Je possède trois ans d’expérience professionnelle en développement
+              Java, en architecture microservices et en déploiements cloud.
+              <span className="block mt-4">
+                Mon expertise s'étend aux systèmes d'IA géospatiale, ayant
+                contribué au développement d'une plateforme deep-tech française
+                pour la transformation d'imageries aériennes en insights
+                stratégiques.
+              </span>
             </p>
 
-            {/* Values Grid */}
-            <div className="grid grid-cols-2 gap-4 mt-8">
-              {values.map(
-                ({ key, icon: Icon, color, bgColor, description }, index) => (
-                  <div
-                    key={key}
-                    className="p-4 rounded-xl bg-card border border-border"
-                  >
-                    <div
-                      className={`w-10 h-10 rounded-lg ${bgColor} flex items-center justify-center mb-3`}
-                    >
-                      <Icon className={`w-5 h-5 ${color}`} />
-                    </div>
-                    <h3 className="font-semibold text-foreground mb-1">
-                      {key}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {description}
-                    </p>
-                  </div>
-                ),
-              )}
-            </div>
-          </div>
-
-          {/* Visual Element */}
-          <div className="relative">
-            <div className="relative aspect-square max-w-md mx-auto">
-              {/* Decorative Elements */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl transform rotate-6" />
-              <div className="absolute inset-0 bg-card rounded-3xl border border-border overflow-hidden">
-                {/* Code-like Visual */}
-                <div className="p-6 h-full flex flex-col">
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-3 h-3 rounded-full bg-red-500" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
-                  </div>
-                  <div className="flex-1 space-y-3 font-mono text-sm">
-                    <div className="flex items-center gap-2">
-                      <span className="text-purple-400">class</span>
-                      <span className="text-yellow-400">Developer</span>
-                      <span className="text-foreground">{"{"}</span>
-                    </div>
-                    <div className="pl-4">
-                      <span className="text-blue-400">constructor</span>
-                      <span className="text-foreground">() {"{"}</span>
-                    </div>
-                    <div className="pl-8 space-y-1">
-                      <div>
-                        <span className="text-foreground">this.</span>
-                        <span className="text-cyan-400">name</span>
-                        <span className="text-foreground"> = </span>
-                        <span className="text-green-400">
-                          &quot;Ny Hasina&quot;
-                        </span>
-                      </div>
-                      <div>
-                        <span className="text-foreground">this.</span>
-                        <span className="text-cyan-400">role</span>
-                        <span className="text-foreground"> = </span>
-                        <span className="text-green-400">
-                          &quot;Full-Stack & AI Engineer&quot;
-                        </span>
-                      </div>
-                      <div>
-                        <span className="text-foreground">this.</span>
-                        <span className="text-cyan-400">passion</span>
-                        <span className="text-foreground"> = </span>
-                        <span className="text-green-400">
-                          &quot;Building amazing things&quot;
-                        </span>
-                      </div>
-                    </div>
-                    <div className="pl-4 text-foreground">{"}"}</div>
-                    <div className="text-foreground">{"}"}</div>
-                  </div>
+            {/* Visual Code Card (Visible on Desktop) */}
+            <div className="hidden md:block relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
+              <div className="relative bg-card border border-border rounded-xl p-6 font-mono text-sm shadow-2xl">
+                <div className="flex gap-1.5 mb-4">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                </div>
+                <div className="space-y-1">
+                  <p>
+                    <span className="text-purple-400">const</span>{" "}
+                    <span className="text-yellow-400">engineer</span> = {"{"}
+                  </p>
+                  <p className="pl-4">
+                    <span className="text-cyan-400">name:</span>{" "}
+                    <span className="text-green-400">"Ny Hasina"</span>,
+                  </p>
+                  <p className="pl-4">
+                    <span className="text-cyan-400">focus:</span>{" "}
+                    <span className="text-green-400">"Scalability & AI"</span>,
+                  </p>
+                  <p className="pl-4">
+                    <span className="text-cyan-400">status:</span>{" "}
+                    <span className="text-green-400">
+                      "Building the future"
+                    </span>
+                  </p>
+                  <p>{"};"}</p>
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Right Column: Skills Grid */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            {skillCategories.map((category, index) => (
+              <div
+                key={index}
+                className="group p-5 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`p-2.5 rounded-lg ${category.bgColor}`}>
+                    <category.icon className={`w-5 h-5 ${category.color}`} />
+                  </div>
+                  <h3 className="font-bold text-foreground">{category.key}</h3>
+                </div>
+
+                <ul className="flex flex-wrap gap-2">
+                  {category.skills.map((skill, sIdx) => (
+                    <li
+                      key={sIdx}
+                      className="text-xs px-2.5 py-1 rounded-md bg-muted/50 text-muted-foreground border border-transparent group-hover:border-primary/10 transition-colors"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -3,8 +3,9 @@
 import { ContactSection } from "@/components/contact/contact";
 import { HeroSection } from "@/components/hero/hero";
 import { NavigationMenuSection } from "@/components/navigation/menu";
-import { PortfolioSection } from "@/components/portfolio/portefolio";
-import { WorkSection } from "@/components/work/work";
+import { ServicesSection } from "@/components/services/services";
+import { SkillsSection } from "@/components/skills/skills";
+import { AboutAndSkillsSection } from "@/components/work/work";
 import en_message from "@/public/dictionnaries/en.json";
 import fr_message from "@/public/dictionnaries/fr.json";
 import { useState } from "react";
@@ -30,8 +31,8 @@ export default function Home() {
       <IntlProvider locale={locale} messages={messages[locale]}>
         <NavigationMenuSection setLocale={setLocale} />
         <HeroSection />
-        <WorkSection />
-        <PortfolioSection />
+        <AboutAndSkillsSection />
+        <ServicesSection />
         <ContactSection />
       </IntlProvider>
     </div>

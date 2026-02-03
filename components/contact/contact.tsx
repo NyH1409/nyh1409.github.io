@@ -1,16 +1,11 @@
 import {
-  BriefcaseBusiness,
-  Code,
-  Contact,
   Facebook,
   Github,
-  Home,
-  Instagram,
   Linkedin,
   Mail,
   MapPin,
   Phone,
-  Twitter,
+  MessageSquare,
 } from "lucide-react";
 import { Button } from "../ui/button";
 import { useIntl } from "react-intl";
@@ -19,161 +14,163 @@ export function ContactSection() {
   const intl = useIntl();
 
   const navItems = [
-    {
-      id: "home",
-      label: intl.formatMessage({ id: "home" }),
-      icon: <Home />,
-      link: "#home",
-    },
-    {
-      id: "works",
-      label: intl.formatMessage({ id: "works" }),
-      icon: <BriefcaseBusiness />,
-      link: "#works",
-    },
+    { id: "home", label: intl.formatMessage({ id: "home" }), link: "#home" },
+    { id: "works", label: intl.formatMessage({ id: "works" }), link: "#works" },
     {
       id: "portfolio",
       label: intl.formatMessage({ id: "portefolio" }),
-      icon: <Code />,
-      link: "#portefolio",
+      link: "#portfolio",
     },
     {
       id: "contacts",
       label: intl.formatMessage({ id: "contacts" }),
-      icon: <Contact />,
       link: "#contacts",
     },
   ];
 
+  const socialLinks = [
+    {
+      icon: <Linkedin className="w-5 h-5" />,
+      href: "https://www.linkedin.com/in/ny-hasina-marolahy-vagno-7a34b6227/",
+    },
+    { icon: <Github className="w-5 h-5" />, href: "https://github.com/nvagno" },
+    {
+      icon: <Facebook className="w-5 h-5" />,
+      href: "https://www.facebook.com/nyhasina.vagno/",
+    },
+  ];
+
   return (
-    <footer id="contacts" className="dark:bg-white bg-black py-12">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div className="space-y-6">
-            <div className="flex items-center space-x-3">
-              <img
-                className="w-10 h-10 lg:w-20 lg:h-20"
-                src="logo.png"
-                alt="Logo"
-              />
+    <footer
+      id="contacts"
+      className="bg-slate-50 dark:bg-[#09090b] py-16 border-t border-border/50"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12">
+          {/* Brand Column */}
+          <div className="space-y-8 lg:col-span-1">
+            <div className="flex items-center gap-4">
+              <div className="bg-white dark:bg-zinc-900 p-2 rounded-xl shadow-sm border border-border/50">
+                <img
+                  className="w-10 h-10 object-contain"
+                  src="logo.png"
+                  alt="Logo"
+                />
+              </div>
               <div>
-                <h2 className="text-2xl dark:text-black text-white font-bold">
+                <h2 className="text-md font-bold tracking-tight text-foreground">
                   Ny Hasina M. VAGNO
                 </h2>
-                <p className="text-sm text-slate-400 dark:text-slate-600">
-                  {intl.formatMessage({
-                    id: "engineer",
-                  })}
+                <p className="text-[10px] text-primary font-bold uppercase tracking-[0.2em]">
+                  {intl.formatMessage({ id: "engineer" })}
                 </p>
               </div>
             </div>
 
-            <div>
-              <p className="text-sm text-slate-400 mb-3 dark:text-slate-600">
-                {intl.formatMessage({
-                  id: "follow",
-                })}
-              </p>
-              <div className="flex space-x-4">
-                <Button size="icon" className="bg-slate-700 text-white">
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+              Conception de solutions logicielles sur-mesure et expertise en IA
+              hybride pour transformer vos idées en réalité technique.
+            </p>
+
+            <div className="flex space-x-4 pt-2">
+              {socialLinks.map((social, i) => (
+                <Button
+                  key={i}
+                  size="icon"
+                  variant="outline"
+                  className="rounded-full hover:bg-primary hover:text-white transition-all duration-300 shadow-sm"
+                  asChild
+                >
                   <a
-                    href="https://www.linkedin.com/in/ny-hasina-marolahy-vagno-7a34b6227/"
-                    className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors"
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <Linkedin className="w-5 h-5" />
+                    {social.icon}
                   </a>
                 </Button>
-                <Button size="icon" className="bg-slate-700 text-white">
-                  <a
-                    href="https://github.com/nvagno"
-                    className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors"
-                  >
-                    <Github className="w-5 h-5" />
-                  </a>
-                </Button>
-                <Button size="icon" className="bg-slate-700 text-white ">
-                  <a
-                    href="https://www.facebook.com/nyhasina.vagno/"
-                    className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors"
-                  >
-                    <Facebook className="w-5 h-5" />
-                  </a>
-                </Button>
-              </div>
+              ))}
             </div>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold mb-3 text-white dark:text-black">
-              {intl.formatMessage({
-                id: "links",
-              })}
+          {/* Quick Links */}
+          <div className="lg:pl-8">
+            <h3 className="text-xs font-black uppercase tracking-[0.2em] mb-8 text-foreground/70">
+              {intl.formatMessage({ id: "links" })}
             </h3>
-            <ul className="space-y-3">
-              {navItems.map((item, k) => [
-                <li key={k}>
+            <ul className="space-y-5">
+              {navItems.map((item) => (
+                <li key={item.id}>
                   <a
                     href={item.link}
-                    className="text-slate-300 dark:text-slate-600 transition-colors flex items-center group"
+                    className="text-sm font-medium text-muted-foreground hover:text-primary transition-all flex items-center group"
                   >
+                    <span className="w-0 group-hover:w-3 transition-all duration-300 h-[1.5px] bg-primary mr-0 group-hover:mr-3" />
                     {item.label}
                   </a>
-                </li>,
-              ])}
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold mb-6 dark:text-black text-white">
-              CONTACTS
+          {/* Contact Details */}
+          <div className="lg:col-span-2">
+            <h3 className="text-xs font-black uppercase tracking-[0.2em] mb-8 text-foreground/70">
+              Contact & Support
             </h3>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <Button size="icon" className="bg-slate-600 text-white">
+            <div className="grid sm:grid-cols-2 gap-y-10 gap-x-8">
+              {/* Phone */}
+              <div className="flex items-start space-x-5 group">
+                <div className="flex-shrink-0 p-3.5 rounded-2xl bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-inner">
                   <Phone className="w-5 h-5" />
-                </Button>
-                <div className="text-sm">
-                  <p className="text-slate-400 dark:text-slate-600 mb-1">
-                    {intl.formatMessage({
-                      id: "phone",
-                    })}
+                </div>
+                <div>
+                  <p className="text-[10px] text-muted-foreground uppercase mb-1.5 font-bold tracking-widest">
+                    {intl.formatMessage({ id: "phone" })}
                   </p>
-                  <p className="font-medium text-white dark:text-black">
+                  <a
+                    href="tel:+262693428016"
+                    className="text-sm font-semibold hover:text-primary transition-colors"
+                  >
                     +262 693 42 80 16
-                  </p>
+                  </a>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-3">
-                <Button size="icon" className="bg-slate-600 text-white">
+              {/* Email */}
+              <div className="flex items-start space-x-5 group">
+                <div className="flex-shrink-0 p-3.5 rounded-2xl bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-inner">
                   <Mail className="w-5 h-5" />
-                </Button>
-                <div className="text-sm">
-                  <p className="text-slate-400 dark:text-slate-600 mb-1">
-                    Email
+                </div>
+                <div>
+                  <p className="text-[10px] text-muted-foreground uppercase mb-1.5 font-bold tracking-widest">
+                    Direct Email
                   </p>
                   <a
                     href="mailto:nyhasinavagno@gmail.com"
-                    className="font-medium transition-colors text-white dark:text-black"
+                    className="text-sm font-semibold hover:text-primary transition-colors break-all"
                   >
                     nyhasinavagno@gmail.com
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-3">
-                <Button size="icon" className="bg-slate-600 text-white">
+              {/* Address */}
+              <div className="flex items-start space-x-5 group sm:col-span-2">
+                <div className="flex-shrink-0 p-3.5 rounded-2xl bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-inner">
                   <MapPin className="w-5 h-5" />
-                </Button>
-                <div className="text-sm">
-                  <p className="text-slate-400 mb-1 dark:text-slate-600">
-                    {intl.formatMessage({
-                      id: "address",
-                    })}
+                </div>
+                <div>
+                  <p className="text-[10px] text-muted-foreground uppercase mb-1.5 font-bold tracking-widest">
+                    {intl.formatMessage({ id: "address" })}
                   </p>
-                  <p className="font-medium leading-relaxed text-white dark:text-black">
-                    14 Avenue Dr Jean-Marie Dambreville, 97410 Saint-Pierre, La
-                    Réunion
+                  <p className="text-sm font-semibold leading-relaxed max-w-sm">
+                    14 Avenue Dr Jean-Marie Dambreville,
+                    <br />
+                    <span className="text-muted-foreground font-medium text-xs tracking-tight">
+                      97410 Saint-Pierre, La Réunion
+                    </span>
                   </p>
                 </div>
               </div>
@@ -181,31 +178,36 @@ export function ContactSection() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-slate-700 text-center">
-          <p className="text-slate-400 dark:text-slate-600 text-sm">
-            ©Ny Hasina M. VAGNO.{" "}
-            {intl.formatMessage({
-              id: "reserved",
-            })}
+        {/* Bottom Bar */}
+        <div className="mt-12 pt-10 border-t border-border/40 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-muted-foreground text-[11px] font-medium tracking-wide">
+            © {new Date().getFullYear()}{" "}
+            <span className="text-foreground font-bold">
+              Ny Hasina M. VAGNO
+            </span>
+            . {intl.formatMessage({ id: "reserved" })}
           </p>
+          <div className="flex gap-8 text-[11px] font-bold uppercase tracking-widest text-muted-foreground/60">
+            <span className="hover:text-primary cursor-pointer transition-colors">
+              Privacy
+            </span>
+            <span className="hover:text-primary cursor-pointer transition-colors">
+              Terms
+            </span>
+          </div>
         </div>
       </div>
 
-      <button className="fixed bottom-8 right-8 w-14 h-14 bg-blue-700 rounded-full flex items-center justify-center shadow-lg transition-colors">
-        <svg
-          className="w-6 h-6 text-white"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-          />
-        </svg>
-      </button>
+      {/* Floating CTA Button */}
+      <a
+        href="mailto:nyhasinavagno@gmail.com"
+        className="fixed bottom-8 right-8 w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:shadow-primary/40 hover:-translate-y-2 active:scale-95 transition-all duration-500 z-40 group"
+      >
+        <MessageSquare className="w-7 h-7 group-hover:rotate-[15deg] transition-transform duration-300" />
+        <span className="absolute right-full mr-5 bg-zinc-900 text-white px-4 py-2 rounded-xl text-xs font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none translate-x-4 group-hover:translate-x-0 shadow-xl">
+          Parlons de votre projet 👋
+        </span>
+      </a>
     </footer>
   );
 }
