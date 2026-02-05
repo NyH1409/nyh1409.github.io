@@ -50,7 +50,7 @@ export function HeroSection() {
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
               <Button
                 size="lg"
-                className="w-full sm:w-auto gap-2 py-6 px-8 text-lg"
+                className="w-full sm:w-auto gap-2 py-6 px-8 text-lg bg-gradient-to-br from-[#00D4FF] to-[#8B5CF6] text-white text-sm"
               >
                 <Download className="w-5 h-5" />
                 <a href="https://drive.google.com/uc?export=download&id=1y_TSi2fEqBxqHhBzKGbcrPQ1adlAIW3s">
