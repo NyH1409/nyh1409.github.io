@@ -197,17 +197,6 @@ export function ContactSection() {
           </div>
         </div>
       </div>
-
-      {/* Floating CTA Button */}
-      <a
-        href="mailto:nyhasinavagno@gmail.com"
-        className="fixed bottom-8 right-8 w-16 h-16 bg-primary text-white rounded-2xl flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:shadow-primary/40 hover:-translate-y-2 active:scale-95 transition-all duration-500 z-40 group"
-      >
-        <MessageSquare className="w-7 h-7 group-hover:rotate-[15deg] transition-transform duration-300" />
-        <span className="absolute right-full mr-5 bg-zinc-900 text-white px-4 py-2 rounded-xl text-xs font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none translate-x-4 group-hover:translate-x-0 shadow-xl">
-          Parlons de votre projet 👋
-        </span>
-      </a>
     </footer>
   );
 }
