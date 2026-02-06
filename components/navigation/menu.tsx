@@ -51,16 +51,16 @@ export function NavigationMenuSection({
       link: "#home",
     },
     {
-      id: "works",
-      label: intl.formatMessage({ id: "works" }),
+      id: "skills",
+      label: intl.formatMessage({ id: "skills" }),
       icon: <BriefcaseBusiness size={18} />,
-      link: "#works",
+      link: "#skills",
     },
     {
-      id: "portfolio",
-      label: intl.formatMessage({ id: "portefolio" }),
+      id: "services",
+      label: intl.formatMessage({ id: "services" }),
       icon: <Code size={18} />,
-      link: "#portfolio",
+      link: "#services",
     },
     {
       id: "contacts",

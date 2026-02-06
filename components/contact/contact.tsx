@@ -15,11 +15,15 @@ export function ContactSection() {
 
   const navItems = [
     { id: "home", label: intl.formatMessage({ id: "home" }), link: "#home" },
-    { id: "works", label: intl.formatMessage({ id: "works" }), link: "#works" },
     {
-      id: "portfolio",
-      label: intl.formatMessage({ id: "portefolio" }),
-      link: "#portfolio",
+      id: "skills",
+      label: intl.formatMessage({ id: "skills" }),
+      link: "#skills",
+    },
+    {
+      id: "services",
+      label: intl.formatMessage({ id: "services" }),
+      link: "#services",
     },
     {
       id: "contacts",
