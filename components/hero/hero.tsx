@@ -21,7 +21,7 @@ export function HeroSection() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-4 md:mb-8 animate-fade-in">
               <span className="w-2 h-2 rounded-full bg-[#00D4FF] animate-pulse" />
               <span className="text-xs md:text-sm text-[#A1A1AA]">
-                Disponible pour de nouveaux projets
+                {intl.formatMessage({ id: "availability" })}
               </span>
             </div>
 
@@ -38,12 +38,10 @@ export function HeroSection() {
             </div>
 
             <p className="text-gray-600 dark:text-gray-300 text-base md:text-lg max-w-lg mx-auto md:mx-0">
-              Je conçois des solutions logicielles sur-mesure, sécurisées dès la
-              conception et optimisées par l'IA.
+              {intl.formatMessage({ id: "description" })}
               <br className="hidden md:block" />
               <span className="mt-2 block">
-                Pour les DSI, CTO et fondateurs qui exigent l'excellence
-                technique.
+                {intl.formatMessage({ id: "speciality" })}
               </span>
             </p>
 
@@ -100,11 +98,11 @@ export function HeroSection() {
         {/* Stats Section - Grid instead of flex with huge gap */}
         <div className="mt-16 md:mt-32 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 border-t border-white/10 pt-10">
           {[
-            { value: "3+", label: "Années d'expérience" },
-            { value: "8+", label: "Projets réalisés" },
-            { value: "5+", label: "Clients satisfaits" },
-            { value: "24/7", label: "Support Technique" },
-            { value: "Agile", label: "Méthodologie" },
+            { value: "3+", label: intl.formatMessage({ id: "xp_year" }) },
+            { value: "8+", label: intl.formatMessage({ id: "xp_projects" }) },
+            { value: "5+", label: intl.formatMessage({ id: "xp_client" }) },
+            { value: "24/7", label: intl.formatMessage({ id: "xp_support" }) },
+            { value: "Agile", label: intl.formatMessage({ id: "xp_metho" }) },
           ].map((stat, index) => (
             <div
               key={index}
