@@ -63,21 +63,17 @@ export const AboutAndSkillsSection = () => {
           <div className="space-y-8">
             <div>
               <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-2">
-                Expertise & Bio
+                {intl.formatMessage({ id: "bio" })}
               </h2>
               <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-                Qui suis-je ?
+                {intl.formatMessage({ id: "whoami" })}
               </h1>
             </div>
 
             <p className="text-md text-muted-foreground leading-relaxed max-w-xl">
-              Je possède trois ans d’expérience professionnelle en développement
-              Java, en architecture microservices et en déploiements cloud.
+              {intl.formatMessage({ id: "about_part1" })}
               <span className="block mt-4">
-                Mon expertise s'étend aux systèmes d'IA géospatiale, ayant
-                contribué au développement d'une plateforme deep-tech française
-                pour la transformation d'imageries aériennes en insights
-                stratégiques.
+                {intl.formatMessage({ id: "about_part2" })}
               </span>
             </p>
 
