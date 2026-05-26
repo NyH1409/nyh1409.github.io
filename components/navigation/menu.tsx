@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -14,23 +13,15 @@ export function NavigationMenuSection({
 }: {
   setLocale: (lc: "en" | "fr") => void;
 }) {
-  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const intl = useIntl();
   const isMobile = useMobile();
 
-  // Gestion de l'effet de scroll pour le header
   useEffect(() => {
     setMounted(true);
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   if (!mounted) return null;
-  const isDark = resolvedTheme === "dark";
 
   const navItems = [
     {
@@ -52,11 +43,6 @@ export function NavigationMenuSection({
       id: "actualité",
       label: intl.formatMessage({ id: "feed" }),
       link: "#feed",
-    },
-    {
-      id: "contacts",
-      label: intl.formatMessage({ id: "contacts" }),
-      link: "#contacts",
     },
   ];
 

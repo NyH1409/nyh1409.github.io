@@ -30,6 +30,7 @@ export default function Home() {
     <div>
       <IntlProvider locale={locale} messages={messages[locale]}>
         <NavigationMenuSection setLocale={setLocale} />
+        <HeroSection />
       </IntlProvider>
     </div>
   );
