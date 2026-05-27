@@ -37,15 +37,15 @@ const photos: Photo[] = [
   },
   {
     id: 5,
-    src: "/erasmus.jpeg",
-    alt: "Internship UPV",
-    label: "Erasmus Internship at UPV",
+    src: "/zoovalencia.jpeg",
+    alt: "Bioparc Valencia",
+    label: "Bioparc València",
   },
   {
     id: 6,
-    src: "/erasmus.jpeg",
-    alt: "Internship UPV",
-    label: "Erasmus Internship at UPV",
+    src: "/oceanographie.jpeg",
+    alt: "Oceanogràfic de València",
+    label: "Oceanogràfic de València",
   },
 ];
 
