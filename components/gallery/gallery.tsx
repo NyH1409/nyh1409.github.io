@@ -35,6 +35,18 @@ const photos: Photo[] = [
     alt: "Internship UPV",
     label: "Erasmus Internship at UPV",
   },
+  {
+    id: 5,
+    src: "/erasmus.jpeg",
+    alt: "Internship UPV",
+    label: "Erasmus Internship at UPV",
+  },
+  {
+    id: 6,
+    src: "/erasmus.jpeg",
+    alt: "Internship UPV",
+    label: "Erasmus Internship at UPV",
+  },
 ];
 
 export default function PhotoGallery() {

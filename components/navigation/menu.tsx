@@ -112,6 +112,7 @@ export function NavigationMenuSection({
                 <button
                   onClick={() => setLocale("fr")}
                   className={cn("lang-btn", intl.locale === "fr" && "on")}
+                  disabled
                 >
                   FR
                 </button>
@@ -134,6 +135,7 @@ export function NavigationMenuSection({
                 <button
                   onClick={() => setLocale("fr")}
                   className={cn("lang-btn", intl.locale === "fr" && "on")}
+                  disabled
                 >
                   FR
                 </button>
