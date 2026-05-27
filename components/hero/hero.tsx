@@ -44,7 +44,7 @@ export function HeroSection() {
 
       <section
         id="home"
-        className="flex items-center bg-[#0C0C0C]"
+        className="flex items-center"
         style={sans}
       >
         <div className="max-w-6xl mx-auto w-full px-6 md:px-10 py-24">
@@ -54,7 +54,7 @@ export function HeroSection() {
               <img
                 src="banner.png"
                 alt="Ny Hasina M. VAGNO"
-                className="w-48 md:w-64 grayscale opacity-80"
+                className="w-48 md:w-64"
               />
             </div>
 

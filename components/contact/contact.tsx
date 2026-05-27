@@ -39,7 +39,7 @@ export function ContactSection() {
 
       <footer
         id="contacts"
-        className="bg-[#0C0C0C] border-t border-[#1E1E1E]"
+        className="border-t border-[#1E1E1E]"
         style={sans}
       >
         <div className="max-w-6xl mx-auto px-6 md:px-10 py-10">
