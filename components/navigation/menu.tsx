@@ -1,246 +1,198 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "../ui/button";
-import {
-  Moon,
-  Sun,
-  Menu,
-  X,
-  Globe,
-  Home,
-  BriefcaseBusiness,
-  Contact,
-  Code,
-} from "lucide-react";
-import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
 } from "../ui/navigation-menu";
 import { useIntl } from "react-intl";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetClose,
-  SheetTitle,
-} from "../ui/sheet";
 import { useMobile } from "@/hooks/use-mobile";
+import { cn } from "@/lib/utils";
+
+const sans = { fontFamily: "'IBM Plex Sans', sans-serif" } as const;
+const mono = { fontFamily: "'IBM Plex Mono', monospace" } as const;
+
+const css = `
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@300;400&display=swap');
+  .nav-a { color: #525252; font-size: 12px; letter-spacing: 0.04em; transition: color 200ms; }
+  .nav-a:hover { color: #D4D4D4; }
+  .lang-btn { background: none; border: none; cursor: pointer; color: #525252; font-size: 11px; letter-spacing: 0.06em; transition: color 200ms; padding: 0; }
+  .lang-btn:hover, .lang-btn.on { color: #D4D4D4; }
+  .mobile-a { color: #525252; font-size: 13px; letter-spacing: 0.04em; transition: color 200ms; display: flex; align-items: center; gap: 16px; }
+  .mobile-a:hover { color: #D4D4D4; }
+`;
+
+interface NavItem {
+  id: string;
+  label: string;
+  link: string;
+}
 
 export function NavigationMenuSection({
   setLocale,
 }: {
   setLocale: (lc: "en" | "fr") => void;
 }) {
-  const { setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState<boolean>(false);
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [mounted, setMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const intl = useIntl();
   const isMobile = useMobile();
 
   useEffect(() => {
     setMounted(true);
   }, []);
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 32);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
 
   if (!mounted) return null;
 
-  const isDark = resolvedTheme === "dark";
-
-  const navItems = [
+  const navItems: NavItem[] = [
+    { id: "home", label: intl.formatMessage({ id: "home" }), link: "#home" },
     {
-      id: "home",
-      label: intl.formatMessage({ id: "home" }),
-      icon: <Home />,
-      link: "#home",
+      id: "experience",
+      label: intl.formatMessage({ id: "experience" }),
+      link: "#experience",
     },
+    { id: "cv", label: intl.formatMessage({ id: "cv" }), link: "#cv" },
     {
-      id: "works",
-      label: intl.formatMessage({ id: "works" }),
-      icon: <BriefcaseBusiness />,
-      link: "#works",
-    },
-    {
-      id: "portfolio",
-      label: intl.formatMessage({ id: "portefolio" }),
-      icon: <Code />,
-      link: "#portfolio",
-    },
-    {
-      id: "contacts",
-      label: intl.formatMessage({ id: "contacts" }),
-      icon: <Contact />,
-      link: "#contacts",
+      id: "actualité",
+      label: intl.formatMessage({ id: "feed" }),
+      link: "#feed",
     },
   ];
 
-  const DesktopNavigation = () => (
-    <header className="w-full fixed top-0 left-0 z-50 flex items-center p-4 lg:p-6">
-      <div
-        className="absolute inset-0 backdrop-blur-md bg-background/70 dark:bg-background/80"
-        aria-hidden="true"
-      />
+  return (
+    <>
+      <style>{css}</style>
 
-      <div className="relative flex items-center flex-1 lg:flex-none lg:mx-12">
-        <img className="w-10 h-10 lg:w-12 lg:h-12" src="logo.png" alt="Logo" />
-        <strong className="ml-3 text-lg lg:text-xl font-bold">#NYHASINA</strong>
-      </div>
+      <header
+        className={cn(
+          "fixed top-0 left-0 w-full z-50 transition-all duration-300",
+          scrolled
+            ? "bg-[#0C0C0C] border-b border-[#1E1E1E] py-3"
+            : "bg-transparent py-5",
+        )}
+        style={sans}
+      >
+        <div className="max-w-6xl mx-auto px-6 md:px-10 flex items-center justify-between">
+          {/* Logo */}
+          <a href="#home" className="no-underline" style={mono}>
+            <span className="text-[13px] text-[#D4D4D4] tracking-tight">
+              nhm.vagno
+            </span>
+          </a>
 
-      <div className="relative hidden lg:flex flex-1 justify-center">
-        <NavigationMenu>
-          <NavigationMenuList className="flex gap-8 xl:gap-10">
-            {navItems.map((item) => (
-              <NavigationMenuItem key={item.id}>
-                <Button
-                  variant="ghost"
-                  className="text-base font-medium hover:bg-primary/10 hover:backdrop-blur-sm transition-all"
+          {!isMobile && (
+            <>
+              <NavigationMenu>
+                <NavigationMenuList className="flex items-center gap-7">
+                  {navItems.map((item) => (
+                    <NavigationMenuItem key={item.id}>
+                      <a href={item.link} className="nav-a" style={sans}>
+                        {item.label}
+                      </a>
+                    </NavigationMenuItem>
+                  ))}
+                </NavigationMenuList>
+              </NavigationMenu>
+
+              <div className="flex items-center gap-[6px]" style={mono}>
+                <button
+                  onClick={() => setLocale("en")}
+                  className={cn("lang-btn", intl.locale === "en" && "on")}
                 >
-                  <a href={item.link} className="flex items-center gap-1">
-                    {item.icon}
-                    {item.label}
-                  </a>
-                </Button>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
-      </div>
-
-      <div className="relative flex items-center justify-end flex-1 lg:flex-none lg:mx-12 gap-2">
-        <Button
-          size="icon"
-          variant="outline"
-          onClick={() => setTheme(isDark ? "light" : "dark")}
-          className="rounded-full backdrop-blur-sm bg-background/50 dark:bg-background/60 hover:bg-primary/10 hover:backdrop-blur-md transition-all"
-          aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-        >
-          {isDark ? <Sun size={20} /> : <Moon size={20} />}
-        </Button>
-
-        <div className="hidden lg:flex gap-2">
-          <Button
-            size="icon"
-            variant={intl.locale === "en" ? "default" : "outline"}
-            onClick={() => setLocale("en")}
-            className="rounded-full backdrop-blur-sm hover:backdrop-blur-md transition-all"
-            aria-label="Switch to English"
-          >
-            🇺🇸
-          </Button>
-          <Button
-            size="icon"
-            variant={intl.locale === "fr" ? "default" : "outline"}
-            onClick={() => setLocale("fr")}
-            className="rounded-full backdrop-blur-sm  hover:backdrop-blur-md transition-all"
-            aria-label="Switch to French"
-          >
-            🇫🇷
-          </Button>
-        </div>
-      </div>
-    </header>
-  );
-
-  const MobileNavigation = () => (
-    <header className="w-full fixed top-0 left-0 z-50 flex items-center justify-between p-4">
-      {/* Blurred background for mobile header */}
-      <div
-        className="absolute inset-0 backdrop-blur-md bg-background/70 dark:bg-background/80"
-        aria-hidden="true"
-      />
-
-      <div className="relative flex items-center">
-        <img className="w-10 h-10" src="logo.png" alt="Logo" />
-        <strong className="ml-3 text-lg font-bold">#NYHASINA</strong>
-      </div>
-
-      <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-        <SheetTrigger asChild>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden relative backdrop-blur-sm bg-background/50 dark:bg-background/60 hover:bg-primary/10 hover:backdrop-blur-md transition-all"
-            aria-label="Open menu"
-          >
-            <Menu size={24} />
-          </Button>
-        </SheetTrigger>
-        <SheetContent
-          side="right"
-          className="w-[85vw] p-5 sm:w-[350px] backdrop-blur-xl bg-background/90 dark:bg-background/95"
-        >
-          <SheetTitle></SheetTitle>
-          <div className="flex flex-col h-full pt-6">
-            <nav className="flex-1">
-              <ul className="space-y-4">
-                {navItems.map((item) => (
-                  <li key={item.id}>
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start text-lg py-6 hover:bg-primary/10 hover:backdrop-blur-sm transition-all"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <a href={item.link}>{item.label}</a>
-                    </Button>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            <div className="pt-6 border-t border-border/50 mt-6">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Theme</span>
-                  <Button
-                    size="icon"
-                    variant="outline"
-                    onClick={() => {
-                      setTheme(isDark ? "light" : "dark");
-                      setIsMenuOpen(false);
-                    }}
-                    className="rounded-full backdrop-blur-sm bg-background/50 dark:bg-background/60 hover:backdrop-blur-md transition-all"
-                  >
-                    {isDark ? <Sun size={20} /> : <Moon size={20} />}
-                  </Button>
-                </div>
-
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium">
-                      {intl.formatMessage({
-                        id: "language",
-                      })}
-                    </span>
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      variant={intl.locale === "en" ? "default" : "outline"}
-                      onClick={() => {
-                        setLocale("en");
-                        setIsMenuOpen(false);
-                      }}
-                      className="flex-1 backdrop-blur-sm hover:backdrop-blur-md transition-all"
-                    >
-                      <span className="mr-2">🇺🇸</span>
-                    </Button>
-                    <Button
-                      variant={intl.locale === "fr" ? "default" : "outline"}
-                      onClick={() => {
-                        setLocale("fr");
-                        setIsMenuOpen(false);
-                      }}
-                      className="flex-1 backdrop-blur-sm hover:backdrop-blur-md transition-all"
-                    >
-                      <span className="mr-2">🇫🇷</span>
-                    </Button>
-                  </div>
-                </div>
+                  EN
+                </button>
+                <span className="text-[#1E1E1E] select-none text-[11px]">
+                  /
+                </span>
+                <button
+                  onClick={() => setLocale("fr")}
+                  className={cn("lang-btn", intl.locale === "fr" && "on")}
+                >
+                  FR
+                </button>
               </div>
-            </div>
-          </div>
-        </SheetContent>
-      </Sheet>
-    </header>
-  );
+            </>
+          )}
 
-  return isMobile ? <MobileNavigation /> : <DesktopNavigation />;
+          {isMobile && (
+            <div className="flex items-center gap-5">
+              <div className="flex items-center gap-[6px]" style={mono}>
+                <button
+                  onClick={() => setLocale("en")}
+                  className={cn("lang-btn", intl.locale === "en" && "on")}
+                >
+                  EN
+                </button>
+                <span className="text-[#1E1E1E] select-none text-[11px]">
+                  /
+                </span>
+                <button
+                  onClick={() => setLocale("fr")}
+                  className={cn("lang-btn", intl.locale === "fr" && "on")}
+                >
+                  FR
+                </button>
+              </div>
+
+              {/* Burger */}
+              <button
+                onClick={() => setOpen((v) => !v)}
+                aria-label="Toggle menu"
+                className="flex flex-col gap-[5px] w-5"
+              >
+                <span
+                  className="block h-px bg-[#525252] w-full transition-all duration-200"
+                  style={{
+                    transform: open ? "rotate(45deg) translateY(6px)" : "none",
+                  }}
+                />
+                <span
+                  className="block h-px bg-[#525252] w-full transition-all duration-200"
+                  style={{ opacity: open ? 0 : 1 }}
+                />
+                <span
+                  className="block h-px bg-[#525252] transition-all duration-200"
+                  style={{
+                    width: open ? "100%" : "60%",
+                    transform: open
+                      ? "rotate(-45deg) translateY(-6px)"
+                      : "none",
+                  }}
+                />
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Mobile drawer */}
+        {isMobile && (
+          <div
+            className="overflow-hidden transition-all duration-300"
+            style={{ maxHeight: open ? "280px" : "0" }}
+          >
+            <nav className="px-6 pb-6 pt-5 border-t border-[#1E1E1E] space-y-4">
+              {navItems.map((item, i) => (
+                <a
+                  key={item.id}
+                  href={item.link}
+                  onClick={() => setOpen(false)}
+                  className="mobile-a"
+                >
+                  <span className="text-[10px] text-[#2A2A2A]" style={mono}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span style={sans}>{item.label}</span>
+                </a>
+              ))}
+            </nav>
+          </div>
+        )}
+      </header>
+    </>
+  );
 }

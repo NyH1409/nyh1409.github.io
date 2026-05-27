@@ -1,105 +1,123 @@
 import { useIntl } from "react-intl";
-import { Button } from "../ui/button";
-import { Download } from "lucide-react";
+import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
+
+const sans = { fontFamily: "'IBM Plex Sans', sans-serif" } as const;
+const mono = { fontFamily: "'IBM Plex Mono', monospace" } as const;
+
+const css = `
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@300;400&display=swap');
+  .social-a { color: #3A3A3A; transition: color 200ms; }
+  .social-a:hover { color: #D4D4D4; }
+`;
+
+interface SocialLink {
+  href: string;
+  label: string;
+  icon: React.ReactNode;
+}
 
 export function HeroSection() {
   const intl = useIntl();
 
-  return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center px-4 py-20"
-    >
-      <div className="max-w-6xl mx-auto w-full">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6 text-center md:text-left order-2 md:order-1">
-            <p className="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wider">
-              {intl.formatMessage({ id: "hello" })}
-            </p>
-            <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold">
-              Ny Hasina M. VAGNO
-            </h1>
-            <p className="text-xl md:text-2xl text-blue-600 dark:text-blue-400 font-medium">
-              {intl.formatMessage({ id: "engineer" })}
-            </p>
-            <p className="text-gray-600 dark:text-gray-300 text-lg">
-              {intl.formatMessage({ id: "description" })}{" "}
-              <span className="font-semibold text-gray-900 dark:text-white">
-                {intl.formatMessage({ id: "speciality" })}
-              </span>
-            </p>
-            <Button size="lg" className="gap-2">
-              <Download className="w-5 h-5" />
-              <a href="https://drive.google.com/uc?export=download&id=1y_TSi2fEqBxqHhBzKGbcrPQ1adlAIW3s">
-                {intl.formatMessage({ id: "cv" })}
-              </a>
-            </Button>
-          </div>
+  const socials: SocialLink[] = [
+    { href: "https://github.com/nvagno", label: "GitHub", icon: <FaGithub /> },
+    {
+      href: "https://www.linkedin.com/in/ny-hasina-marolahy-vagno-7a34b6227/",
+      label: "LinkedIn",
+      icon: <FaLinkedin />,
+    },
+    {
+      href: "https://www.instagram.com/nyy_has/",
+      label: "Instagram",
+      icon: <FaInstagram />,
+    },
+    {
+      href: "https://www.facebook.com/nyhasina.vagno",
+      label: "Facebook",
+      icon: <FaFacebook />,
+    },
+  ];
 
-          <div className="relative flex justify-center order-1 md:order-2">
-            <div className="relative z-10">
+  return (
+    <>
+      <style>{css}</style>
+
+      <section id="home" className="flex items-center" style={sans}>
+        <div className="max-w-6xl mx-auto w-full px-6 md:px-10 py-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+            {/* ── Photo ───────────────────────────────── */}
+            <div className="flex justify-center md:justify-start order-1 md:order-1">
               <img
                 src="banner.png"
                 alt="Ny Hasina M. VAGNO"
-                className="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-2xl"
+                className="w-48 md:w-64"
               />
             </div>
 
-            <div className="absolute top-0 left-0 md:left-10 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 max-w-[140px] animate-float">
-              <p className="text-xs font-medium text-gray-700 dark:text-gray-300">
-                {intl.formatMessage({
-                  id: "comment1",
-                })}
-              </p>
-            </div>
+            {/* ── Text ────────────────────────────────── */}
+            <div className="order-2 md:order-2 space-y-8">
+              {/* Name + role */}
+              <div className="space-y-2">
+                <p
+                  className="text-[11px] text-[#525252] tracking-[0.08em] uppercase mb-3"
+                  style={mono}
+                >
+                  {intl.formatMessage({ id: "hello" })}
+                </p>
 
-            <div className="absolute top-10 right-0 md:right-5 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 max-w-[130px] animate-float-delayed">
-              <p className="text-xs font-medium text-gray-700 dark:text-gray-300">
-                {intl.formatMessage({
-                  id: "comment2",
-                })}
-              </p>
-            </div>
+                <h1
+                  className="text-3xl md:text-4xl font-normal text-[#D4D4D4] leading-tight"
+                  style={sans}
+                >
+                  Ny Hasina M. VAGNO
+                </h1>
 
-            <div className="absolute bottom-5 left-0 md:left-5 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 max-w-[135px] animate-float">
-              <p className="text-xs font-medium text-gray-700 dark:text-gray-300">
-                {intl.formatMessage({
-                  id: "comment3",
-                })}
-              </p>
-            </div>
+                <p
+                  className="text-[12px] text-[#525252] tracking-[0.06em]"
+                  style={mono}
+                >
+                  {intl.formatMessage({ id: "engineer" })}
+                </p>
+              </div>
 
-            <div className="absolute bottom-0 right-0 md:right-10 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-3 max-w-[140px] animate-float-delayed">
-              <p className="text-xs font-medium text-gray-700 dark:text-gray-300">
-                {intl.formatMessage({
-                  id: "comment4",
-                })}
-              </p>
+              {/* Separator */}
+              <div className="border-t border-[#1E1E1E]" />
+
+              {/* Bio */}
+              <div className="space-y-3">
+                <p
+                  className="text-[13px] font-light leading-relaxed text-[#525252]"
+                  style={sans}
+                >
+                  {intl.formatMessage({ id: "description" })}
+                </p>
+                <p
+                  className="text-[13px] font-light leading-relaxed text-[#525252]"
+                  style={sans}
+                >
+                  {intl.formatMessage({ id: "speciality" })}
+                </p>
+              </div>
+
+              {/* Socials */}
+              <div className="flex items-center gap-5 text-[15px]">
+                {socials.map(({ href, label, icon }) => (
+                  <a
+                    key={href}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="social-a"
+                  >
+                    {icon}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-
-        .animate-float-delayed {
-          animation: float 3s ease-in-out infinite;
-          animation-delay: 1.5s;
-        }
-      `}</style>
-    </section>
+      </section>
+    </>
   );
 }
