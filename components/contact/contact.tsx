@@ -37,11 +37,7 @@ export function ContactSection() {
     <>
       <style>{css}</style>
 
-      <footer
-        id="contacts"
-        className="border-t border-[#1E1E1E]"
-        style={sans}
-      >
+      <footer id="contacts" className="border-t border-[#1E1E1E]" style={sans}>
         <div className="max-w-6xl mx-auto px-6 md:px-10 py-10">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             {/* Wordmark */}

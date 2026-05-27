@@ -23,27 +23,27 @@ type LoadedMap = Record<number, boolean>;
 const photos: Photo[] = [
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=800&fit=crop",
-    alt: "Conference talk on stage",
-    label: "Main Stage",
+    src: "livecoding.png",
+    alt: "2nd place",
+    label: "Orange Live Coding",
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=600&h=800&fit=crop",
-    alt: "Speaker at tech event",
-    label: "Keynote",
+    src: "imbadax.jpg",
+    alt: "3rd Place",
+    label: "ImbadaX Madagascar",
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=800&fit=crop",
-    alt: "Audience at conference",
-    label: "The Crowd",
+    src: "hackathon.jpg",
+    alt: "Winner",
+    label: "Hackathon intra-HEI",
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=800&fit=crop",
-    alt: "Developer meetup",
-    label: "Networking",
+    src: "erasmus.jpeg",
+    alt: "Internship UPV",
+    label: "Erasmus Internship at UPV",
   },
 ];
 
@@ -107,7 +107,7 @@ export default function PhotoGallery() {
             </span>
           </div>
           <p className="text-[12px] font-light text-[#525252]" style={sans}>
-            A selection of moments from conferences and meetups.
+            A selection of special moments
           </p>
         </div>
 
@@ -139,7 +139,7 @@ export default function PhotoGallery() {
                   alt={photo.alt}
                   draggable={false}
                   onLoad={() => handleLoad(photo.id)}
-                  className="w-full h-full object-cover grayscale"
+                  className="w-full h-full object-cover"
                   style={{
                     opacity: loaded[photo.id] ? (isHovered ? 0.9 : 0.6) : 0,
                     transition: "opacity 300ms ease",

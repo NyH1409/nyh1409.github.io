@@ -42,11 +42,7 @@ export function HeroSection() {
     <>
       <style>{css}</style>
 
-      <section
-        id="home"
-        className="flex items-center"
-        style={sans}
-      >
+      <section id="home" className="flex items-center" style={sans}>
         <div className="max-w-6xl mx-auto w-full px-6 md:px-10 py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             {/* ── Photo ───────────────────────────────── */}
