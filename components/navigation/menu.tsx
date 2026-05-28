@@ -50,17 +50,17 @@ export function NavigationMenuSection({
   if (!mounted) return null;
 
   const navItems: NavItem[] = [
-    { id: "home", label: intl.formatMessage({ id: "home" }), link: "#home" },
+    { id: "home", label: intl.formatMessage({ id: "home" }), link: "/" },
     {
       id: "experience",
       label: intl.formatMessage({ id: "experience" }),
-      link: "#experience",
+      link: "/experience",
     },
-    { id: "cv", label: intl.formatMessage({ id: "cv" }), link: "#cv" },
+    { id: "cv", label: intl.formatMessage({ id: "cv" }), link: "/resume" },
     {
       id: "actualité",
       label: intl.formatMessage({ id: "feed" }),
-      link: "#feed",
+      link: "/feed",
     },
   ];
 

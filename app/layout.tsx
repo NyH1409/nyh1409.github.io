@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import Script from "next/script"; // 1. On importe le composant Script
+import TranslationProvider from "./provider";
 
 export const metadata: Metadata = {
   title: "Ny Hasina VAGNO",
@@ -46,7 +46,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <TranslationProvider>{children}</TranslationProvider>
         </ThemeProvider>
       </body>
     </html>
