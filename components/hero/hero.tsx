@@ -6,14 +6,26 @@ const mono = { fontFamily: "'IBM Plex Mono', monospace" } as const;
 
 const css = `
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@300;400&display=swap');
-  .social-a { color: #3A3A3A; transition: color 200ms; }
-  .social-a:hover { color: #D4D4D4; }
+  .social-a { color: #A8A8A5; transition: color 200ms; }
+  .social-a:hover { color: #1C1C1A; }
+  .project-card {
+    border: 1px solid #E5E4E0;
+    padding: 16px;
+    background: #fff;
+    transition: border-color 200ms;
+  }
+  .project-card:hover { border-color: #A8A8A5; }
 `;
 
 interface SocialLink {
   href: string;
   label: string;
   icon: React.ReactNode;
+}
+
+interface StatItem {
+  value: string;
+  labelId: string;
 }
 
 export function HeroSection() {
@@ -38,69 +50,92 @@ export function HeroSection() {
     },
   ];
 
+  const stats: StatItem[] = [
+    { value: "3", labelId: "xp_year" },
+    { value: "10", labelId: "xp_projects" },
+    { value: "5", labelId: "xp_client" },
+    { value: "24/7", labelId: "xp_support" },
+  ];
+
+  const comments: string[] = [
+    intl.formatMessage({ id: "comment1" }),
+    intl.formatMessage({ id: "comment2" }),
+    intl.formatMessage({ id: "comment3" }),
+    intl.formatMessage({ id: "comment4" }),
+  ];
+
   return (
     <>
       <style>{css}</style>
 
-      <section id="home" className="flex items-center" style={sans}>
-        <div className="max-w-6xl mx-auto w-full px-6 md:px-10 py-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-            {/* ── Photo ───────────────────────────────── */}
-            <div className="flex justify-center md:justify-start order-1 md:order-1">
+      <main id="home" className="bg-[#F7F7F5]" style={sans}>
+        <div className="max-w-6xl mx-auto px-6 md:px-10 pt-28 pb-20">
+          {/* ── Hero grid ────────────────────────────── */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-14 items-start mb-16">
+            {/* Photo */}
+            <div className="flex justify-center md:justify-start order-1">
               <img
                 src="banner.png"
                 alt="Ny Hasina M. VAGNO"
-                className="w-48 md:w-64"
+                className="w-48 md:w-60"
               />
             </div>
 
-            {/* ── Text ────────────────────────────────── */}
-            <div className="order-2 md:order-2 space-y-8">
-              {/* Name + role */}
-              <div className="space-y-2">
+            {/* Identity */}
+            <div className="order-2 space-y-6">
+              <div>
                 <p
-                  className="text-[11px] text-[#525252] tracking-[0.08em] uppercase mb-3"
+                  className="text-[11px] text-[#A8A8A5] tracking-[0.08em] uppercase mb-2"
                   style={mono}
                 >
                   {intl.formatMessage({ id: "hello" })}
                 </p>
-
                 <h1
-                  className="text-3xl md:text-4xl font-normal text-[#D4D4D4] leading-tight"
+                  className="text-3xl md:text-4xl font-normal text-[#1C1C1A] leading-snug"
                   style={sans}
                 >
                   Ny Hasina M. VAGNO
                 </h1>
-
                 <p
-                  className="text-[12px] text-[#525252] tracking-[0.06em]"
+                  className="text-[12px] text-[#6B6B68] tracking-[0.05em] mt-1"
                   style={mono}
                 >
                   {intl.formatMessage({ id: "engineer" })}
                 </p>
               </div>
 
-              {/* Separator */}
-              <div className="border-t border-[#1E1E1E]" />
+              <div className="border-t border-[#E5E4E0]" />
 
-              {/* Bio */}
               <div className="space-y-3">
-                <p
-                  className="text-[13px] font-light leading-relaxed text-[#525252]"
-                  style={sans}
-                >
+                <p className="text-[13px] font-light leading-relaxed text-[#6B6B68]">
                   {intl.formatMessage({ id: "description" })}
                 </p>
-                <p
-                  className="text-[13px] font-light leading-relaxed text-[#525252]"
-                  style={sans}
-                >
+                <p className="text-[13px] font-light leading-relaxed text-[#6B6B68]">
                   {intl.formatMessage({ id: "speciality" })}
                 </p>
               </div>
 
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2">
+                {comments.map((c) => (
+                  <span
+                    key={c}
+                    className="text-[11px] text-[#6B6B68] border border-[#E5E4E0] px-3 py-1 bg-white"
+                    style={sans}
+                  >
+                    {c}
+                  </span>
+                ))}
+              </div>
+
               {/* Socials */}
-              <div className="flex items-center gap-5 text-[15px]">
+              <div className="flex items-center gap-5 text-[15px] pt-1">
+                <span
+                  className="text-[11px] text-[#A8A8A5] tracking-[0.05em]"
+                  style={mono}
+                >
+                  {intl.formatMessage({ id: "follow" })}
+                </span>
                 {socials.map(({ href, label, icon }) => (
                   <a
                     key={href}
@@ -117,7 +152,7 @@ export function HeroSection() {
             </div>
           </div>
         </div>
-      </section>
+      </main>
     </>
   );
 }
