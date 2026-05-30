@@ -6,7 +6,7 @@ import {
 } from "../ui/navigation-menu";
 import { useIntl } from "react-intl";
 import { useMobile } from "@/hooks/use-mobile";
-import { cn } from "@/lib/utils";
+import { cn, getNavItems } from "@/lib/utils";
 
 const sans = { fontFamily: "'IBM Plex Sans', sans-serif" } as const;
 const mono = { fontFamily: "'IBM Plex Mono', monospace" } as const;
@@ -35,12 +35,6 @@ const css = `
   .mobile-a:hover { color: #1C1C1A; }
 `;
 
-interface NavItem {
-  id: string;
-  label: string;
-  link: string;
-}
-
 export function NavigationMenuSection({
   setLocale,
 }: {
@@ -63,17 +57,6 @@ export function NavigationMenuSection({
   }, []);
 
   if (!mounted) return null;
-
-  const navItems: NavItem[] = [
-    { id: "home", label: intl.formatMessage({ id: "home" }), link: "/" },
-    { id: "cv", label: intl.formatMessage({ id: "cv" }), link: "/resume" },
-    { id: "blog", label: intl.formatMessage({ id: "feed" }), link: "/blog" },
-    {
-      id: "contacts",
-      label: intl.formatMessage({ id: "contacts" }),
-      link: "#contacts",
-    },
-  ];
 
   return (
     <>
@@ -101,7 +84,7 @@ export function NavigationMenuSection({
             <>
               <NavigationMenu>
                 <NavigationMenuList className="flex items-center gap-7">
-                  {navItems.map((item) => (
+                  {getNavItems(intl).map((item) => (
                     <NavigationMenuItem key={item.id}>
                       <a href={item.link} className="nav-a" style={sans}>
                         {item.label}
@@ -187,7 +170,7 @@ export function NavigationMenuSection({
             style={{ maxHeight: open ? "360px" : "0" }}
           >
             <nav className="px-6 pb-7 pt-5 border-t border-[#E5E4E0] space-y-5 bg-[#F7F7F5]">
-              {navItems.map((item, i) => (
+              {getNavItems(intl).map((item, i) => (
                 <a
                   key={item.id}
                   href={item.link}

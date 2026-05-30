@@ -12,8 +12,10 @@ const PDFViewer = dynamic(() => import("@/components/pdfviewer"), {
 
 export default function ResumePage() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-8">
-      <PDFViewer url="resume.pdf" />
+    <main className="min-h-screen bg-zinc-100 dark:bg-zinc-950 p-6">
+      <div className="max-w-4xl mx-auto">
+        <PDFViewer url="resume.pdf" />
+      </div>
     </main>
   );
 }

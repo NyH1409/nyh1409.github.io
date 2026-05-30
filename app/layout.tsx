@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/provider/theme-provider";
 import Script from "next/script"; // 1. On importe le composant Script
-import TranslationProvider from "./provider";
+import TranslationProvider from "../components/provider/provider";
 
 export const metadata: Metadata = {
   title: "Ny Hasina VAGNO",
@@ -40,14 +39,7 @@ export default function RootLayout({
           />
         </noscript>
 
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <TranslationProvider>{children}</TranslationProvider>
-        </ThemeProvider>
+        <TranslationProvider>{children}</TranslationProvider>
       </body>
     </html>
   );

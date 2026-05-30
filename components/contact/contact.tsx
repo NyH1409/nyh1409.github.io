@@ -1,5 +1,5 @@
+import { getNavItems, socials } from "@/lib/utils";
 import { useIntl } from "react-intl";
-import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 
 const sans = { fontFamily: "'IBM Plex Sans', sans-serif" } as const;
 const mono = { fontFamily: "'IBM Plex Mono', monospace" } as const;
@@ -12,44 +12,8 @@ const css = `
   .social-sm:hover { color: #1C1C1A; }
 `;
 
-interface NavItem {
-  id: string;
-  label: string;
-  link: string;
-}
-
 export function ContactSection() {
   const intl = useIntl();
-
-  const navItems: NavItem[] = [
-    { id: "home", label: intl.formatMessage({ id: "home" }), link: "#home" },
-    {
-      id: "experience",
-      label: intl.formatMessage({ id: "experience" }),
-      link: "#experience",
-    },
-    { id: "cv", label: intl.formatMessage({ id: "cv" }), link: "#cv" },
-    { id: "feed", label: intl.formatMessage({ id: "feed" }), link: "#feed" },
-  ];
-
-  const socials = [
-    { href: "https://github.com/nvagno", label: "GitHub", icon: <FaGithub /> },
-    {
-      href: "https://www.linkedin.com/in/ny-hasina-marolahy-vagno-7a34b6227/",
-      label: "LinkedIn",
-      icon: <FaLinkedin />,
-    },
-    {
-      href: "https://www.instagram.com/nyy_has/",
-      label: "Instagram",
-      icon: <FaInstagram />,
-    },
-    {
-      href: "https://www.facebook.com/nyhasina.vagno",
-      label: "Facebook",
-      icon: <FaFacebook />,
-    },
-  ];
 
   return (
     <>
@@ -85,7 +49,7 @@ export function ContactSection() {
                 {intl.formatMessage({ id: "links" })}
               </p>
               <nav className="flex flex-col gap-3">
-                {navItems.map((item) => (
+                {getNavItems(intl).map((item) => (
                   <a
                     key={item.id}
                     href={item.link}
