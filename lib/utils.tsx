@@ -15,7 +15,11 @@ export function cn(...inputs: ClassValue[]) {
 export const getNavItems = (intl: any): NavItem[] => [
   { id: "home", label: intl.formatMessage({ id: "home" }), link: "/" },
   { id: "resume", label: intl.formatMessage({ id: "cv" }), link: "/resume" },
-  { id: "blog", label: intl.formatMessage({ id: "feed" }), link: "/blog" },
+  {
+    id: "blog",
+    label: intl.formatMessage({ id: "project" }),
+    link: "/projects",
+  },
   {
     id: "contacts",
     label: intl.formatMessage({ id: "contacts" }),
